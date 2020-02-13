@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'Raleway-Light';
+  src: url(/fonts/Raleway-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Raleway-Thin';
+  src: url(/fonts/Raleway-Thin.ttf) format("truetype");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(245, 245, 245);
+  font-family: 'Raleway-Light';
+  font-size: 22px;
+  color: #555;
+}
+
+ul {
+  list-style-type: none;
+}
+
+header {
+  width: 100%;
+  font-size: 200%;
+  text-align: center;
+  padding: 1% 0;
+  font-family: 'Raleway-Thin';
+  color: rgb(211, 135, 135);
+}
+
+section {
+  background: rgb(255, 255, 255);
+  border: 1px solid #ddd;
+  margin-left: 15vw;
+  width: 70vw;
+  box-shadow: 0px 12px 10px -5px rgba(0, 0, 0, .2);
+}
+
+article {
+  border-bottom: none;
+  min-height: 8vh;
+  padding: 0.8% 2%;
+}
+
+article:first-child, .todos li {
+  padding: 2.5% 0% 2% 2.5%;
+  border-bottom: 1px solid #ddd;
+  min-height: 12vh;
+}
+
+.todos li {
+  padding: 1.9%;
+}
+
+i {
+  font-size: 90%;
+  margin-right: 3%;
+  color: #eee;
+}
+
+.add__todo i {margin-left: 0.6%;}
+.add__todo input {
+  margin-left: 1.9%;
+  border: none;
+  outline: none;
+  color: #666;
+  font-size: 100%;
+  width: 90%;
+  padding: 0.5% 0;
+}
+
+.add__todo input::placeholder {
+  color: #ccc;
+  font-style: italic;
+}
+
+.todos li * {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 3%;
+}
+
+.todos li span {
+  width: 80%;
+}
+
+.todos button {
+  background: none;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  padding: 0.5% 1%;
+}
+
+li .btn-check i {visibility: hidden; font-size: 150%;}
+li.done .btn-check i {
+  visibility: visible;
+  color: rgb(72, 192, 192);
+}
+
+.btn-delete {
+  margin-left: 4%;
+  margin-right: 0% !important;
+  font-size: 120%;
+}
+
+.done .btn-delete {
+  color: #777;
+}
+
+.todos li.done .btn-check {
+  border-color: rgb(72, 192, 192);
+}
+
+.todos li.done span {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+.options {
+  color: #aaa;
+  font-size: 75%;
+}
+
+.items__count {
+  display: inline-block;
+  padding-top: 0.5%;
+}
+
+.options__all {
+  margin-right: 20%;
+  float: right;
+  width: 50%;
+}
+
+.options__all, .options__all li {
+  display: inline-block;
+}
+
+.options__all li {padding: 1% 1.5%;}
+.options__all li:first-child {
+  border: 1px solid #ddd;
+}
