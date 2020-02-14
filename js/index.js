@@ -5,6 +5,7 @@ const controller = ((mdl, vw) => {
 
   const addController = e => {
       e.preventDefault();
+
       const title = vw.getInput();
       if (title !== "") {
         vw.clearInput();
@@ -33,24 +34,63 @@ const controller = ((mdl, vw) => {
     else if (e.target.matches(".todo__item, .todo__item *")) toggleController(liItem, id);
   }
 
-  const activeAllController = () => {
-    /* Se deben realizar bucles en ambos modules, hallar la manera de realizar un solo bucle aqui. */
-    mdl.activeAll();
-    vw.activeAll();
+  const deleteAllController = async () => {
+    for (const { id } of mdl.getTodos()) {
+      const element = document.querySelector(`.todo__item[data-id="${id}"]`);
+      await vw.deleteTodo(element, 500);
+      mdl.deleteTodo(id);
+    }
+
+
+     /* mdl.getTodos().forEach(async ({id}) => {
+        const element = document.querySelector(`.todo__item[data-id="${id}"]`);
+        await vw.deleteTodo(element);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        mdl.deleteTodo(id);
+        console.log("l")
+     }); */
+  };
+
+  const allController = activate => {
+    mdl.getTodos().forEach(todo => {
+      if (!(todo.completed - activate)) {
+        mdl.toggleCompleted(todo.id);
+        vw.toggleCompleted(todo);
+      }
+    });
   }
 
   elements.addForm.addEventListener("submit", addController);
   elements.todoList.addEventListener("click", todoController);
-  elements.activeAll.addEventListener("click", activeAllController);
+  elements.activeAll.addEventListener("click", allController.bind(null, true));
+  elements.completeAll.addEventListener("click", allController.bind(null, false));
+  elements.deleteAll.addEventListener("click", deleteAllController);
 
   return {
-    initializate: () => {
+    initializate: async () => {
       mdl.retrieveData();
-      mdl.getTodos().forEach(todo => {
-        vw.renderTodo(todo);
-      });
+      for (const todo of mdl.getTodos()) {
+        await vw.renderTodo(todo, 100);
+      }
+    },
+
+    write: e => {
+      if (e.charCode === 13 && vw.getInput() !== "") addController.call(null, e);
+      else if (e.key) vw.write();
+    },
+
+    test: () => {
+      let now = new Date();
+      let secondsCount = 0;
+      setInterval(() => {
+        if ((new Date() - now) % 1000 <= 10) {
+          secondsCount++;
+          console.log(`Han pasado ${secondsCount} segundos.`);
+        }
+      }, 10);
     }
   };
 })(model, view);
 
 window.addEventListener("load", controller.initializate);
+window.addEventListener("keypress", controller.write);

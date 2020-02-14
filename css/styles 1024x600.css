@@ -12,11 +12,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  transition: all .2s, transform 1s;
+  transition: all .2s;
 }
 
 body {
-  overflow-x: hidden;
   background: rgb(250, 250, 250);
   font-family: 'Raleway-Light';
   font-size: 22px;
@@ -40,7 +39,7 @@ header {
 section {
   margin-left: 15vw;
   width: 70vw;
-  box-shadow: 0px 15px 10px -10px rgba(0, 0, 0, .2);
+  box-shadow: 0px 12px 10px -5px rgba(0, 0, 0, .2);
 }
 
 article, footer {
@@ -51,8 +50,16 @@ article, footer {
 }
 
 article:first-child, .todos li {
+  border-bottom: none;
   padding: 2.5% 0% 2% 2.5%;
   min-height: 12vh;
+}
+
+.todos li {
+  background: rgb(255, 255, 255);
+  padding: .5% 1.9%;
+  border: 1px solid #ddd;
+  border-bottom: none;
 }
 
 i {
@@ -81,62 +88,8 @@ i {
 /* Todos */
 
 .todos li {
-  position: relative;
   cursor: pointer;
-  background: rgb(255, 255, 255);
-  padding: .5% 1.9%;
-  border: 1px solid #ddd;
-  border-top: none;
 }
-
-.todos li:last-child {
-  border-bottom: none;
-}
-
-.deletedRight {
-  animation: deleteRightAnimation .7s;
-}
-
-.deletedLeft {
-  animation: deleteLeftAnimation .7s;
-}
-
-@keyframes deleteRightAnimation {
-  70% {
-    transform: translateX(100%);
-    min-height: 12vh;
-    opacity: 1;
-  }
-  80% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(100%);
-    min-height: 0px;
-    height: 0px;
-    opacity: 0;
-  }
-}
-
-@keyframes deleteLeftAnimation {
-  70% {
-    transform: translateX(-100%);
-    min-height: 12vh;
-    opacity: 1;
-  }
-  80% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(-100%);
-    min-height: 0px;
-    height: 0px;
-    opacity: 0;
-  }
-}
-
 .todos li * {
   display: inline-block;
   margin-right: 3%;
@@ -236,12 +189,11 @@ footer {
   padding-top: 0.5%;
   font-weight: 100;
   font-size: 100%;
-  width: 15%;
 }
 
 .options__all {
-  position: relative;
-  left: 18%;
+  margin-right: 20%;
+  float: right;
   width: 50%;
 }
 
