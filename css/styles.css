@@ -12,13 +12,15 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  transition: all .2s;
 }
 
 body {
-  background: rgb(245, 245, 245);
+  background: rgb(250, 250, 250);
   font-family: 'Raleway-Light';
   font-size: 22px;
   color: #555;
+  padding-bottom: 7vh;
 }
 
 ul {
@@ -35,27 +37,29 @@ header {
 }
 
 section {
-  background: rgb(255, 255, 255);
-  border: 1px solid #ddd;
   margin-left: 15vw;
   width: 70vw;
   box-shadow: 0px 12px 10px -5px rgba(0, 0, 0, .2);
 }
 
-article {
-  border-bottom: none;
+article, footer {
+  background: rgb(255, 255, 255);
+  border: 1px solid #ddd;
   min-height: 8vh;
-  padding: 0.8% 2%;
+  padding: 0.7% 2%;
 }
 
 article:first-child, .todos li {
+  border-bottom: none;
   padding: 2.5% 0% 2% 2.5%;
-  border-bottom: 1px solid #ddd;
   min-height: 12vh;
 }
 
 .todos li {
-  padding: 1.9%;
+  background: rgb(255, 255, 255);
+  padding: .5% 1.9%;
+  border: 1px solid #ddd;
+  border-bottom: none;
 }
 
 i {
@@ -66,70 +70,125 @@ i {
 
 .add__todo i {margin-left: 0.6%;}
 .add__todo input {
-  margin-left: 1.9%;
+  margin-left: 0.4%;
   border: none;
   outline: none;
-  color: #666;
+  color: #333;
   font-size: 100%;
+  font-family: "Raleway-Light";
   width: 90%;
   padding: 0.5% 0;
 }
 
 .add__todo input::placeholder {
-  color: #ccc;
+  color: #ddd;
   font-style: italic;
 }
 
-.todos li * {
+/* Todos */
+
+.todos li {
   cursor: pointer;
+}
+.todos li * {
   display: inline-block;
   margin-right: 3%;
 }
 
-.todos li span {
+.todos li h2 {
   width: 80%;
+  font-size: 100%;
+  font-weight: 100;
 }
 
-.todos button {
-  background: none;
-  border: 1px solid #eee;
-  border-radius: 50%;
-  padding: 0.5% 1%;
-}
-
-li .btn-check i {visibility: hidden; font-size: 150%;}
-li.done .btn-check i {
-  visibility: visible;
-  color: rgb(72, 192, 192);
-}
-
-.btn-delete {
-  margin-left: 4%;
-  margin-right: 0% !important;
-  font-size: 120%;
-}
-
-.done .btn-delete {
-  color: #777;
-}
-
-.todos li.done .btn-check {
-  border-color: rgb(72, 192, 192);
-}
-
-.todos li.done span {
+.todos li.done h2 {
   text-decoration: line-through;
   color: #ccc;
 }
 
-.options {
+.todos button {
+  cursor: pointer;
+  background: none;
+  border: 0.5px solid #eee;
+  outline: none;
+  border-radius: 50%;
+  padding: 0.5% 1%;
+}
+
+.info h4 {
+  color: #777;
+  font-style: normal;
+}
+
+.created__at, .created__date {
+  padding-top: 7%;
+}
+
+.done .created__at, .done .created__date {
+  padding-top: 0;
+}
+
+.completed__at, .completed__date {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.done .completed__at, .done .completed__date {
+  opacity: 1;
+  visibility: visible;
+}
+
+.info {
+  float: right;
+  margin-top: -6%;
+  width: 30%;
+  font-size: 50%;
+  line-height: 150%;
+  transition: line-height 0s;
+}
+
+.done .info {
+  line-height: 200%;
+}
+
+li .btn__check i {visibility: hidden; font-size: 150%;}
+li.done .btn__check i {
+  visibility: visible;
+  color: rgb(72, 192, 192);
+}
+
+.btn__delete {
+  margin-left: 4%;
+  margin-right: 0% !important;
+  margin-top: 1.5%;
+  font-size: 120%;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.done .btn__delete:hover {color: #777;}
+.done .btn__delete {
+  opacity: 1;
+  visibility: visible;
+}
+
+.todos li.done .btn__check {
+  border-color: rgb(72, 192, 192);
+}
+
+/* footer */
+
+footer {
   color: #aaa;
   font-size: 75%;
 }
 
 .items__count {
   display: inline-block;
+  margin-left: 1%;
   padding-top: 0.5%;
+  font-weight: 100;
+  font-size: 100%;
 }
 
 .options__all {
@@ -142,7 +201,9 @@ li.done .btn-check i {
   display: inline-block;
 }
 
-.options__all li {padding: 1% 1.5%;}
+.options__all li {cursor: pointer; padding: 1% 1.5%;}
 .options__all li:first-child {
+  cursor: default;
+  margin-right: 1.5%;
   border: 1px solid #ddd;
 }
