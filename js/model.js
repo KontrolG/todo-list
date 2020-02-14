@@ -54,6 +54,8 @@ const model = (() => {
       });
     },
 
+    getActiveCount: () => todos.reduce((prev, cur) => !cur.completed ? prev + 1 : prev, 0),
+
     retrieveData: () => {
       const storage = JSON.parse(localStorage.getItem("todos"));
       if (storage) todos.push(...storage);
