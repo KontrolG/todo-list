@@ -84,7 +84,7 @@ i {
   position: relative;
   cursor: pointer;
   background: rgb(255, 255, 255);
-  padding: 2% 1.9%;
+  padding: 2.4% 1.9%;
   border: 1px solid #ddd;
   border-top: none;
 }
@@ -163,14 +163,14 @@ i {
 }
 
 .info {
-  margin-top: 0.3%;
-  border: 1px solid black;
+  margin-top: 1.3%;
   width: 25%;
   font-size: 50%;
 }
 
 .done .info {
   line-height: 200%;
+  margin-top: -0.5%
 }
 
 .info h4 {
@@ -178,33 +178,26 @@ i {
   font-style: normal;
 }
 
-.created__at, .created__date {
-  padding-top: 6%;
-}
-
-.done .created__at, .done .created__date {
-  padding-top: 0;
-}
-
 .completed__at, .completed__date {
   opacity: 0;
-  display: none;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 .done .completed__at, .done .completed__date {
   opacity: 1;
-  display: block;
-  /* visibility: visible; */
+  visibility: visible;
 }
 
 li .btn__check i {visibility: hidden; font-size: 170%;}
 li.done .btn__check i {
-  /* visibility: visible; */
+  visibility: visible;
   color: rgb(72, 192, 192);
 }
 
 .btn__delete {
+  margin-top: 0.5%;
+  margin-left: 3%;
+  margin-right: 0 !important;
   font-size: 120%;
   opacity: 0;
   visibility: hidden;

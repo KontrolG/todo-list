@@ -39,7 +39,9 @@ const view = (() => {
   };
 
   const timeDifference = date => {
-    const miliSeconds = new Date() - new Date(date ? date : "");
+    const todoTime = new Date(date ? date : "");
+    const todayTime = new Date();
+    const miliSeconds = todayTime - todoTime;
     return getString(...calculateTimeUnits(miliSeconds));  
   }
 
