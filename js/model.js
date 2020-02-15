@@ -47,15 +47,6 @@ const model = (() => {
       persistData();
     },
 
-    activeAll: () => {
-      todos.forEach(todo => {
-        todo.completed = false;
-        todo.completedAt = null;
-      });
-    },
-
-    getActiveCount: () => todos.reduce((prev, cur) => !cur.completed ? prev + 1 : prev, 0),
-
     retrieveData: () => {
       const storage = JSON.parse(localStorage.getItem("todos"));
       if (storage) todos.push(...storage);

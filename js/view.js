@@ -14,11 +14,7 @@ const view = (() => {
   let toRight = true;
 
   const updateCount = () => {
-    /* no contar los completados. */
-    const allCount = document.querySelectorAll(".todo__item").length;
-    const completeCount = document.querySelectorAll(".todo__item.done").length;
-
-    const count = allCount - completeCount;
+    const count = document.querySelectorAll(".todo__item:not([class*='done'])").length;
     elements.itemCount.textContent = `${count < 1 ? "No" : count} item${count !== 1 ? "s" : ""} left`;
   };
 
@@ -47,6 +43,10 @@ const view = (() => {
     return getString(...calculateTimeUnits(miliSeconds));  
   }
 
+  const getLiElement = id => {
+    return document.querySelector(`li.todo__item[data-id="${id}"]`);
+  }
+
   return {
     elements,
 
@@ -67,13 +67,14 @@ const view = (() => {
         <i class="btn__delete ion-close"></i>
       </li>`;
       elements.todoList.insertAdjacentHTML("afterbegin", markup);
-      toRight = Boolean(Math.floor(Math.random() * 2));
+      toRight = !toRight;
       await new Promise(resolve => setTimeout(resolve, ms));
+      getLiElement(id).style.animation = "";
       updateCount();
     },
 
     toggleCompleted: ({id, completedAt}) => {
-      const element = document.querySelector(`li.todo__item[data-id="${id}"]`);
+      const element = getLiElement(id);
       element.classList.toggle("done");
       
       const completedAtElement = document.querySelector(`li.todo__item[data-id="${id}"] .completed__date`);
@@ -81,20 +82,14 @@ const view = (() => {
       updateCount();
     },
 
-    deleteTodo: async (element, ms = 1000) => {
+    deleteTodo: async (id, ms = 1000) => {
+      const element = getLiElement(id);
       element.style.animation = `delete${toRight ? "Right" : "Left"}Animation ${ms / 1000}s`;
       toRight = !toRight;
       await new Promise(resolve => setTimeout(resolve, ms));
+      element.style.animation = "";
       element.remove();
       updateCount();   
-    },
-
-    activeAll: () => {
-      const liElements = Array.from(document.querySelectorAll(".todo__item.done"));
-
-      liElements.forEach(element => element.classList.remove("done"));
-
-      updateCount();
     },
 
     write: () => {

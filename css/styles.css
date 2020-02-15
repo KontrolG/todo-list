@@ -46,13 +46,13 @@ section {
 article, footer {
   background: rgb(255, 255, 255);
   border: 1px solid #ddd;
-  min-height: 8vh;
+  height: 8vh;
   padding: 0.7% 2%;
 }
 
 article:first-child, .todos li {
   padding: 2.5% 0% 2% 2.5%;
-  min-height: 12vh;
+  height: 12vh;
 }
 
 i {
@@ -84,7 +84,7 @@ i {
   position: relative;
   cursor: pointer;
   background: rgb(255, 255, 255);
-  padding: .5% 1.9%;
+  padding: 2% 1.9%;
   border: 1px solid #ddd;
   border-top: none;
 }
@@ -122,7 +122,7 @@ i {
 @keyframes deleteLeftAnimation {
   70% {
     transform: translateX(-100%);
-    min-height: 12vh;
+    height: 12vh;
     opacity: 1;
   }
   80% {
@@ -131,19 +131,19 @@ i {
   }
   100% {
     transform: translateX(-100%);
-    min-height: 0px;
     height: 0px;
     opacity: 0;
   }
 }
 
 .todos li * {
-  display: inline-block;
   margin-right: 3%;
+  float: left;
 }
 
 .todos li h2 {
-  width: 80%;
+  margin-top: 0.3%;
+  width: 55%;
   font-size: 100%;
   font-weight: 100;
 }
@@ -159,7 +159,18 @@ i {
   border: 0.5px solid #eee;
   outline: none;
   border-radius: 50%;
-  padding: 0.5% 1%;
+  padding: 0.5% 1.05%;
+}
+
+.info {
+  margin-top: 0.3%;
+  border: 1px solid black;
+  width: 25%;
+  font-size: 50%;
+}
+
+.done .info {
+  line-height: 200%;
 }
 
 .info h4 {
@@ -168,7 +179,7 @@ i {
 }
 
 .created__at, .created__date {
-  padding-top: 7%;
+  padding-top: 6%;
 }
 
 .done .created__at, .done .created__date {
@@ -177,37 +188,23 @@ i {
 
 .completed__at, .completed__date {
   opacity: 0;
-  visibility: hidden;
+  display: none;
+  /* visibility: hidden; */
 }
 
 .done .completed__at, .done .completed__date {
   opacity: 1;
-  visibility: visible;
+  display: block;
+  /* visibility: visible; */
 }
 
-.info {
-  float: right;
-  margin-top: -6%;
-  width: 30%;
-  font-size: 50%;
-  line-height: 150%;
-  transition: line-height 0s;
-}
-
-.done .info {
-  line-height: 200%;
-}
-
-li .btn__check i {visibility: hidden; font-size: 150%;}
+li .btn__check i {visibility: hidden; font-size: 170%;}
 li.done .btn__check i {
-  visibility: visible;
+  /* visibility: visible; */
   color: rgb(72, 192, 192);
 }
 
 .btn__delete {
-  margin-left: 4%;
-  margin-right: 0% !important;
-  margin-top: 1.5%;
   font-size: 120%;
   opacity: 0;
   visibility: hidden;
@@ -228,6 +225,7 @@ li.done .btn__check i {
 footer {
   color: #aaa;
   font-size: 75%;
+  padding-top: 1%;
 }
 
 .items__count {
