@@ -14,12 +14,12 @@ const view = (() => {
   let toRight = true;
 
   const updateCount = () => {
-    const count = document.querySelectorAll(".todo__item:not([class*='done'])").length;
-    elements.itemCount.textContent = `${count < 1 ? "No" : count} item${count !== 1 ? "s" : ""} left`;
+    const elementCount = document.querySelectorAll(".todo__item:not([class*='done'])").length;
+    elements.itemCount.textContent = `${elementCount < 1 ? "No" : elementCount} item${elementCount !== 1 ? "s" : ""} left`;
   };
 
   const getTimeString = (count, unit) => `${count} ${unit}${count > 1 ? "s" : ""} ago`;
-  const getDateString = (count) => count === 1 ? "yesterday" : `${count} days ago`;
+  const getDateString = count => count === 1 ? "yesterday" : `${count} days ago`;
 
   const calculateTimeUnits = miliSeconds => {
     const seconds = Math.floor(miliSeconds / 1000);
